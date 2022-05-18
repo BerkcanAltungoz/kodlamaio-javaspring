@@ -1,7 +1,5 @@
 package kodlamaio.northwind.entities.concretes;
 
-import lombok.Data;
-
 import javax.persistence.*;
 
 @Entity
