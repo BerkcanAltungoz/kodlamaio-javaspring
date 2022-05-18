@@ -7,15 +7,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="hrms" />
         <module name="northwind" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="hrms" target="11" />
       <module name="northwind" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="hrms" options="-parameters" />
       <module name="northwind" options="-parameters" />
     </option>
   </component>

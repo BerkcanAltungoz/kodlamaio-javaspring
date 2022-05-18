@@ -4,6 +4,7 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/northwind/pom.xml" />
+        <option value="$PROJECT_DIR$/hrms/pom.xml" />
       </list>
     </option>
   </component>
