@@ -1,6 +1,8 @@
 package kodlamaio.hrms.entities.concretes;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -8,6 +10,8 @@ import java.util.Date;
 @Data
 @Entity
 @Table(name="jobs")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Job {
 
     @Id
@@ -39,18 +43,5 @@ public class Job {
     @Column(name = "location")
     private String location;
 
-    public Job() {
-    }
 
-    public Job(int jobID, int companyID, String title, String field, String description, int salary, Date startDate, Date endDate, String location) {
-        this.jobID = jobID;
-        this.companyID = companyID;
-        this.title = title;
-        this.field = field;
-        this.description = description;
-        this.salary = salary;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.location = location;
-    }
 }
