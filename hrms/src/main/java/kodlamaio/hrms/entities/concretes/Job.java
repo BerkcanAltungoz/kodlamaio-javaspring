@@ -1,5 +1,6 @@
 package kodlamaio.hrms.entities.concretes;
 
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,6 +20,7 @@ public class Job {
     @Column(name = "job_id")
     private int jobID;
 
+    @NotNull
     @Column(name = "company_id")
     private int companyID;
 
