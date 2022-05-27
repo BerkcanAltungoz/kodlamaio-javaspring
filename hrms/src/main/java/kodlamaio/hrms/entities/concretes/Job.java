@@ -9,13 +9,13 @@ import java.util.Date;
 
 @Data
 @Entity
-@Table(name="jobs")
+@Table(name = "jobs")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Job {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "job_id")
     private int jobID;
 

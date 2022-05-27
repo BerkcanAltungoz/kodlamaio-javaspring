@@ -1,6 +1,8 @@
 package kodlamaio.hrms.business.concretes;
 
 import kodlamaio.hrms.business.abstracts.JobService;
+import kodlamaio.hrms.core.utilities.results.Result;
+import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.JobDao;
 import kodlamaio.hrms.entities.concretes.Job;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,5 +23,11 @@ public class JobManager implements JobService {
     @Override
     public List<Job> getAll() {
         return jobDao.findAll();
+    }
+
+    @Override
+    public Result add(Job job) {
+        jobDao.save(job);
+        return new SuccessResult("Job Added");
     }
 }
