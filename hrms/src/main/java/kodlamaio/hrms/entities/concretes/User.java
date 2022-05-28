@@ -1,9 +1,7 @@
 package kodlamaio.hrms.entities.concretes;
 
 import com.sun.istack.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
@@ -12,25 +10,27 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
-@Data
-@Entity
-@Table(name = "users")
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
+
+@Entity
+@Table(name = "users")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class User {
 
     @Id
-    @Column(name = "user_id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int userID;
+    private int id;
 
 
     @NotNull
     @NotBlank
     @Email
     @Size(max = 50)
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     private String email;
 
     @NotNull

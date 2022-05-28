@@ -1,18 +1,18 @@
 package kodlamaio.hrms.entities.concretes;
 
 import com.sun.istack.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
 
-@Data
-@Entity
-@Table(name = "jobs")
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
+
+@Entity
+@Table(name = "jobs")
 public class Job {
 
     @Id

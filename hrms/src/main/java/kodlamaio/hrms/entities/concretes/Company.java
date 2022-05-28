@@ -1,28 +1,23 @@
 package kodlamaio.hrms.entities.concretes;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.time.LocalDateTime;
 
 
-@Data
-@Entity
-@Table(name = "companies")
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = false)
-@PrimaryKeyJoinColumn(name = "company_id", referencedColumnName = "user_id")
+
+@Entity
+@Table(name = "companies")
+@PrimaryKeyJoinColumn(name = "user_id", referencedColumnName = "id")
 public class Company extends User{
 
     @NotNull
@@ -40,11 +35,13 @@ public class Company extends User{
     @NotNull
     @NotBlank
     @Pattern(regexp = "^\\d{10}$", message = "Telephone Number Must be 10 Digits")
-    @Column(name = "telephone_number")
+    @Column(name = "telephone_number", unique = true)
     private String telephoneNumber;
 
     @Column(name = "personnel_validation_status")
     private boolean personnelValidationStatus;
 
+    @Column(name = "date_verified")
+    @PastOrPresent
     private LocalDateTime dateVerified;
 }

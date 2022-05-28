@@ -11,11 +11,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/employees")
-public class EmployeeController {
+public class EmployeesController {
     private EmployeeService employeeService;
 
     @Autowired
-    public EmployeeController(EmployeeService employeeService) {
+    public EmployeesController(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
 
@@ -24,9 +24,9 @@ public class EmployeeController {
         return employeeService.getAll();
     }
 
-    @GetMapping(value = "/ge/byID")
-    public DataResult<Employee> getByID(@RequestParam int employeeID){
-        return employeeService.getByID(employeeID);
+    @GetMapping(value = "/get/byID")
+    public DataResult<Employee> getByID(@RequestParam int userID){
+        return employeeService.getByID(userID);
     }
 
     @GetMapping(value = "/get/byIdentityNumber")

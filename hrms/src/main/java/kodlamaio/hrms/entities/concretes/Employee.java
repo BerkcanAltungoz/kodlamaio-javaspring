@@ -1,22 +1,21 @@
 package kodlamaio.hrms.entities.concretes;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.time.LocalDate;
 
 
-@Data
-@Entity
-@Table(name = "employees")
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = false)
-@PrimaryKeyJoinColumn(name = "employee_id", referencedColumnName = "user_id")
+
+@Entity
+@Table(name = "employees")
+@PrimaryKeyJoinColumn(name = "user_id", referencedColumnName = "id")
 public class Employee extends User {
 
     @NotNull
@@ -34,7 +33,7 @@ public class Employee extends User {
     @NotBlank
     @NotNull
     @Pattern(regexp = "^\\d{11}$", message = "National identity must be 11 digits")
-    @Column(name = "identity_number")
+    @Column(name = "identity_number", unique = true)
     private String identityNumber;
 
     @NotNull

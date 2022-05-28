@@ -31,8 +31,8 @@ public class EmployeeManager implements EmployeeService {
     }
 
     @Override
-    public DataResult<Employee> getByID(int employeeID) {
-        return new SuccessDataResult<>(employeeDao.findByUserID(employeeID));
+    public DataResult<Employee> getByID(int userID) {
+        return new SuccessDataResult<>(employeeDao.findById(userID));
     }
 
     @Override
