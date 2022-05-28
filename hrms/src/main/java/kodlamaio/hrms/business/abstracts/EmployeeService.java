@@ -15,6 +15,5 @@ public interface EmployeeService {
     public Result isEmailExists(String email);
     public Result isIdentityNumberExists(String identityNumber);
     public Result add(Employee employee);
-    public Result update(Employee employee);
     public Result delete(Employee employee);
 }

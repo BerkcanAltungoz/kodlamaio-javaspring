@@ -27,22 +27,22 @@ public class EmployeeManager implements EmployeeService {
 
     @Override
     public DataResult<List<Employee>> getAll() {
-        return new SuccessDataResult<List<Employee>>(employeeDao.findAll());
+        return new SuccessDataResult<>(employeeDao.findAll());
     }
 
     @Override
     public DataResult<Employee> getByID(int employeeID) {
-        return new SuccessDataResult<Employee>(employeeDao.findByUserID(employeeID));
+        return new SuccessDataResult<>(employeeDao.findByUserID(employeeID));
     }
 
     @Override
     public DataResult<Employee> getByIdentityNumber(String identityNumber) {
-        return new SuccessDataResult<Employee>(employeeDao.findByIdentityNumber(identityNumber));
+        return new SuccessDataResult<>(employeeDao.findByIdentityNumber(identityNumber));
     }
 
     @Override
     public DataResult<Employee> getByEmail(String email) {
-        return new SuccessDataResult<Employee>(employeeDao.findByEmail(email));
+        return new SuccessDataResult<>(employeeDao.findByEmail(email));
     }
 
     @Override
@@ -54,18 +54,31 @@ public class EmployeeManager implements EmployeeService {
     public Result isIdentityNumberExists(String identityNumber) {
         return employeeDao.existsByIdentityNumber(identityNumber) ? new SuccessResult() : new ErrorResult();
     }
-    @Override
-    public Result add(Employee employee) {
-        return null;
-    }
 
     @Override
-    public Result update(Employee employee) {
-        return null;
+    public Result add(Employee employee) {
+       if(!personVerificationService.verify(employee.getIdentityNumber(), employee.getName(), employee.getLastname(), employee.getDateofbirth().getYear()).isSuccess()){
+            return new ErrorResult("Mernis Verification Failed");
+        }
+       else if(!emailVerificationService.verify(employee.getEmail()).isSuccess()){
+           return new ErrorResult("Invalid Email Format");
+       }
+       else if(isEmailExists(employee.getEmail()).isSuccess()){
+           return new ErrorResult("Email Already Exists");
+       }
+       else if(isIdentityNumberExists(employee.getIdentityNumber()).isSuccess()){
+           return new ErrorResult("Identity Number Already Exists");
+       }
+       else{
+           employeeDao.save(employee);
+           return new SuccessResult("Employee Registration Successful");
+       }
     }
+
 
     @Override
     public Result delete(Employee employee) {
-        return null;
+        employeeDao.delete(employee);
+        return new SuccessResult("Employee Deletion Successful");
     }
 }

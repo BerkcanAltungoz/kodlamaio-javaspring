@@ -4,11 +4,13 @@ import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -36,4 +38,11 @@ public class User {
     @Size(max = 256)
     @Column(name = "password")
     private String password;
+
+    @Column(name = "email_validation_status")
+    private boolean emailValidationStatus;
+
+    @CreatedDate
+    @Column(name = "date_created")
+    private LocalDateTime dateCreated;
 }

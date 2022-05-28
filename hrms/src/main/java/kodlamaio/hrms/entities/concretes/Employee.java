@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -39,6 +40,6 @@ public class Employee extends User {
     @NotNull
     @Past
     @Column(name = "dateofbirth")
-    private Date dateofbirth;
+    private LocalDate dateofbirth;
 
 }
