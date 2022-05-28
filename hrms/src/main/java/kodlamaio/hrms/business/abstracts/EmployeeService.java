@@ -7,7 +7,6 @@ import kodlamaio.hrms.entities.concretes.Employee;
 import java.util.List;
 
 public interface EmployeeService {
-
     public DataResult<List<Employee>> getAll();
     public DataResult<Employee> getByID(int userID);
     public DataResult<Employee> getByIdentityNumber(String identityNumber);

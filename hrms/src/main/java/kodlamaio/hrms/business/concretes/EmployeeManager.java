@@ -75,7 +75,6 @@ public class EmployeeManager implements EmployeeService {
        }
     }
 
-
     @Override
     public Result delete(Employee employee) {
         employeeDao.delete(employee);
