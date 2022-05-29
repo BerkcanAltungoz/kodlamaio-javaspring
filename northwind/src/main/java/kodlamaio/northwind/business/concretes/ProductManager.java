@@ -1,5 +1,6 @@
 package kodlamaio.northwind.business.concretes;
 
+
 import kodlamaio.northwind.business.abstracts.ProductService;
 import kodlamaio.northwind.core.utilities.results.DataResult;
 import kodlamaio.northwind.core.utilities.results.Result;
@@ -8,6 +9,9 @@ import kodlamaio.northwind.core.utilities.results.SuccessResult;
 import kodlamaio.northwind.dataAccess.abstracts.ProductDao;
 import kodlamaio.northwind.entities.concretes.Product;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,6 +32,18 @@ public class ProductManager implements ProductService {
     }
 
     @Override
+    public DataResult<List<Product>> getAll(int pageNo, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNo-1,pageSize);
+        return new SuccessDataResult<>(productDao.findAll(pageable).getContent());
+    }
+
+    @Override
+    public DataResult<List<Product>> getAllSorted() {
+        Sort sort = Sort.by(Sort.Direction.DESC,"productName");
+        return new SuccessDataResult<>(productDao.findAll(sort));
+    }
+
+    @Override
     public Result add(Product product) {
         productDao.save(product);
         return new SuccessResult("Ürün Eklendi");
@@ -39,18 +55,18 @@ public class ProductManager implements ProductService {
     }
 
     @Override
-    public DataResult<Product> getByProductNameAndCategoryId(String productName, int categoryId) {
-        return new SuccessDataResult<>(productDao.getByProductNameAndCategoryId(productName,categoryId));
+    public DataResult<Product> getByProductNameAndCategory_CategoryId(String productName, int categoryId) {
+        return new SuccessDataResult<>(productDao.getByProductNameAndCategory_CategoryId(productName,categoryId));
     }
 
     @Override
-    public DataResult<List<Product>> getByProductNameOrCategoryId(String productName, int categoryId) {
-        return new SuccessDataResult<>(productDao.getByProductNameOrCategoryId(productName,categoryId));
+    public DataResult<List<Product>> getByProductNameOrCategory_CategoryId(String productName, int categoryId) {
+        return new SuccessDataResult<>(productDao.getByProductNameOrCategory_CategoryId(productName,categoryId));
     }
 
     @Override
-    public DataResult<List<Product>> getByCategoryIdIn(List<Integer> categories) {
-        return new SuccessDataResult<>(productDao.getByCategoryIdIn(categories));
+    public DataResult<List<Product>> getByCategory_CategoryIdIn(List<Integer> categories) {
+        return new SuccessDataResult<>(productDao.getByCategory_CategoryIdIn(categories));
     }
 
     @Override
@@ -64,8 +80,8 @@ public class ProductManager implements ProductService {
     }
 
     @Override
-    public DataResult<List<Product>> GetByNameAndCategory(String productName, int categoryId) {
-        return new SuccessDataResult<>(productDao.getByNameAndCategory(productName,categoryId));
+    public DataResult<List<Product>> GetByNameAndCategoryId(String productName, int categoryId) {
+        return new SuccessDataResult<>(productDao.getByNameAndCategoryId(productName,categoryId));
     }
 
 }
