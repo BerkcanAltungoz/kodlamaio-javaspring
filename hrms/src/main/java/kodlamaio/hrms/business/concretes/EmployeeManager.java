@@ -32,26 +32,26 @@ public class EmployeeManager implements EmployeeService {
 
     @Override
     public DataResult<Employee> getByID(int userID) {
-        return new SuccessDataResult<>(employeeDao.findById(userID));
+        return new SuccessDataResult<>(employeeDao.getById(userID));
     }
 
     @Override
     public DataResult<Employee> getByIdentityNumber(String identityNumber) {
-        return new SuccessDataResult<>(employeeDao.findByIdentityNumber(identityNumber));
+        return new SuccessDataResult<>(employeeDao.getByIdentityNumber(identityNumber));
     }
 
     @Override
     public DataResult<Employee> getByEmail(String email) {
-        return new SuccessDataResult<>(employeeDao.findByEmail(email));
+        return new SuccessDataResult<>(employeeDao.getByEmail(email));
     }
 
     @Override
-    public Result isEmailExists(String email) {
+    public Result existsByEmail(String email) {
         return employeeDao.existsByEmail(email) ? new SuccessResult() : new ErrorResult();
     }
 
     @Override
-    public Result isIdentityNumberExists(String identityNumber) {
+    public Result existsByIdentityNumber(String identityNumber) {
         return employeeDao.existsByIdentityNumber(identityNumber) ? new SuccessResult() : new ErrorResult();
     }
 
@@ -63,10 +63,10 @@ public class EmployeeManager implements EmployeeService {
        else if(!emailVerificationService.verify(employee.getEmail()).isSuccess()){
            return new ErrorResult("Invalid Email Format");
        }
-       else if(isEmailExists(employee.getEmail()).isSuccess()){
+       else if(existsByEmail(employee.getEmail()).isSuccess()){
            return new ErrorResult("Email Already Exists");
        }
-       else if(isIdentityNumberExists(employee.getIdentityNumber()).isSuccess()){
+       else if(existsByIdentityNumber(employee.getIdentityNumber()).isSuccess()){
            return new ErrorResult("Identity Number Already Exists");
        }
        else{

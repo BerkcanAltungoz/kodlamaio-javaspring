@@ -11,8 +11,8 @@ public interface EmployeeService {
     public DataResult<Employee> getByID(int userID);
     public DataResult<Employee> getByIdentityNumber(String identityNumber);
     public DataResult<Employee> getByEmail(String email);
-    public Result isEmailExists(String email);
-    public Result isIdentityNumberExists(String identityNumber);
+    public Result existsByEmail(String email);
+    public Result existsByIdentityNumber(String identityNumber);
     public Result add(Employee employee);
     public Result delete(Employee employee);
 }

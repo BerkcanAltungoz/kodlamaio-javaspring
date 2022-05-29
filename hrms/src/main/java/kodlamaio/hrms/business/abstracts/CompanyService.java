@@ -10,7 +10,7 @@ public interface CompanyService {
     public DataResult<List<Company>> getAll();
     public DataResult<Company> getByID(int userID);
     public DataResult<Company> getByEmail(String email);
-    public Result isEmailExists(String email);
+    public Result existsByEmail(String email);
     public Result add(Company company);
     public Result delete(Company company);
 }

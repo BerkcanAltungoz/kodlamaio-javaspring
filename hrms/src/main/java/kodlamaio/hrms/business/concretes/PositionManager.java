@@ -25,17 +25,17 @@ public class PositionManager implements PositionService {
 
     @Override
     public DataResult<Position> getByTitle(String title) {
-        return new SuccessDataResult<>(positionDao.findByTitle(title));
+        return new SuccessDataResult<>(positionDao.getByTitle(title));
     }
 
     @Override
-    public Result isTitleExists(String title) {
+    public Result existsByTitle(String title) {
         return positionDao.existsByTitle(title) ? new SuccessResult() : new ErrorResult();
     }
 
     @Override
     public Result add(Position position) {
-        if(isTitleExists(position.getTitle()).isSuccess()){
+        if(existsByTitle(position.getTitle()).isSuccess()){
             return new ErrorResult("Position Title Already Exists");
         }
         else{

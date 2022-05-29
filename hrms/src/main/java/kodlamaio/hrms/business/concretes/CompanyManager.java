@@ -30,16 +30,16 @@ public class CompanyManager implements CompanyService {
 
     @Override
     public DataResult<Company> getByID(int userID) {
-        return new SuccessDataResult<>(companyDao.findById(userID));
+        return new SuccessDataResult<>(companyDao.getById(userID));
     }
 
     @Override
     public DataResult<Company> getByEmail(String email) {
-        return new SuccessDataResult<>(companyDao.findByEmail(email));
+        return new SuccessDataResult<>(companyDao.getByEmail(email));
     }
 
     @Override
-    public Result isEmailExists(String email) {
+    public Result existsByEmail(String email) {
         return companyDao.existsByEmail(email) ? new SuccessResult() : new ErrorResult();
     }
 
@@ -48,7 +48,7 @@ public class CompanyManager implements CompanyService {
         if(!emailVerificationService.verify(company.getEmail()).isSuccess()){
             return new ErrorResult("Invalid Email Format");
         }
-        else if(isEmailExists(company.getEmail()).isSuccess()){
+        else if(existsByEmail(company.getEmail()).isSuccess()){
             return new ErrorResult("Email Already Exists");
         }
         else{

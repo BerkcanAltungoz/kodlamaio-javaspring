@@ -24,7 +24,7 @@ public class ProductManager implements ProductService {
 
     @Override
     public DataResult<List<Product>> getAll() {
-        return new SuccessDataResult<List<Product>>(productDao.findAll(),"Data Listelendi");
+        return new SuccessDataResult<>(productDao.findAll(),"Data Listelendi");
     }
 
     @Override
@@ -32,4 +32,40 @@ public class ProductManager implements ProductService {
         productDao.save(product);
         return new SuccessResult("Ürün Eklendi");
     }
+
+    @Override
+    public DataResult<Product> getByProductName(String productName) {
+        return new SuccessDataResult<>(productDao.getByProductName(productName));
+    }
+
+    @Override
+    public DataResult<Product> getByProductNameAndCategoryId(String productName, int categoryId) {
+        return new SuccessDataResult<>(productDao.getByProductNameAndCategoryId(productName,categoryId));
+    }
+
+    @Override
+    public DataResult<List<Product>> getByProductNameOrCategoryId(String productName, int categoryId) {
+        return new SuccessDataResult<>(productDao.getByProductNameOrCategoryId(productName,categoryId));
+    }
+
+    @Override
+    public DataResult<List<Product>> getByCategoryIdIn(List<Integer> categories) {
+        return new SuccessDataResult<>(productDao.getByCategoryIdIn(categories));
+    }
+
+    @Override
+    public DataResult<List<Product>> getByProductNameContains(String productName) {
+        return new SuccessDataResult<>(productDao.getByProductNameContains(productName));
+    }
+
+    @Override
+    public DataResult<List<Product>> getByProductNameStartsWith(String productName) {
+        return new SuccessDataResult<>(productDao.getByProductNameStartsWith(productName));
+    }
+
+    @Override
+    public DataResult<List<Product>> GetByNameAndCategory(String productName, int categoryId) {
+        return new SuccessDataResult<>(productDao.getByNameAndCategory(productName,categoryId));
+    }
+
 }
