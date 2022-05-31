@@ -18,8 +18,8 @@ import java.util.List;
 @NoArgsConstructor
 
 @Entity
-@Table(name = "positions")
-public class Position {
+@Table(name = "cities")
+public class City {
 
     @Id
     @Column(name = "id")
@@ -29,10 +29,11 @@ public class Position {
     @NotNull
     @NotBlank
     @Size(max = 50)
-    @Column(name = "title", unique = true)
-    private String title;
+    @Column(name = "name", unique = true)
+    private String name;
 
-    @OneToMany(mappedBy = "position")
-    @JsonIgnoreProperties({"position"})
+    @OneToMany(mappedBy = "city")
+    @JsonIgnoreProperties({"city"})
     private List<JobPosting> jobPostings;
+
 }

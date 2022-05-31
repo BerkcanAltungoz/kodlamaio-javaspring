@@ -1,13 +1,12 @@
 package kodlamaio.hrms.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @Getter
@@ -23,8 +22,8 @@ public class Company extends User{
     @NotNull
     @NotBlank
     @Size(max = 50)
-    @Column(name = "company_name")
-    private String companyName;
+    @Column(name = "name", unique = true)
+    private String name;
 
     @NotNull
     @NotBlank
@@ -44,4 +43,8 @@ public class Company extends User{
     @Column(name = "date_verified")
     @PastOrPresent
     private LocalDateTime dateVerified;
+
+    @OneToMany(mappedBy = "company")
+    @JsonIgnoreProperties({"company"})
+    private List<JobPosting> jobPostings;
 }

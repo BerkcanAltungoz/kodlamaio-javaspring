@@ -80,7 +80,7 @@ public class ProductManager implements ProductService {
     }
 
     @Override
-    public DataResult<List<Product>> GetByNameAndCategoryId(String productName, int categoryId) {
+    public DataResult<List<Product>> getByNameAndCategoryId(String productName, int categoryId) {
         return new SuccessDataResult<>(productDao.getByNameAndCategoryId(productName,categoryId));
     }
 

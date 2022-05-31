@@ -19,6 +19,6 @@ public interface ProductService {
     DataResult<List<Product>> getByCategory_CategoryIdIn(List<Integer> categories);
     DataResult<List<Product>> getByProductNameContains(String productName);
     DataResult<List<Product>> getByProductNameStartsWith(String productName);
-    DataResult<List<Product>> GetByNameAndCategoryId(String productName, int categoryId);
+    DataResult<List<Product>> getByNameAndCategoryId(String productName, int categoryId);
 
 }

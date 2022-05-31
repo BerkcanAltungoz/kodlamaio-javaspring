@@ -9,8 +9,10 @@ import java.util.List;
 public interface PositionService {
 
     public DataResult<List<Position>> getAll();
-    public DataResult<Position> getByTitle(String title);
-    public Result existsByTitle(String title);
     public Result add(Position position);
     public Result delete(Position position);
+
+    public DataResult<Position> getByTitle(String title);
+    public Result existsByTitle(String title);
+
 }

@@ -8,11 +8,13 @@ import java.util.List;
 
 public interface EmployeeService {
     public DataResult<List<Employee>> getAll();
+    public Result add(Employee employee);
+    public Result delete(Employee employee);
+
     public DataResult<Employee> getByID(int userID);
     public DataResult<Employee> getByIdentityNumber(String identityNumber);
     public DataResult<Employee> getByEmail(String email);
     public Result existsByEmail(String email);
     public Result existsByIdentityNumber(String identityNumber);
-    public Result add(Employee employee);
-    public Result delete(Employee employee);
+
 }

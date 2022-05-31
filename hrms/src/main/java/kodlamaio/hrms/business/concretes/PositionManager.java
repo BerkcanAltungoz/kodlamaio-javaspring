@@ -47,6 +47,6 @@ public class PositionManager implements PositionService {
     @Override
     public Result delete(Position position) {
         positionDao.delete(position);
-        return new SuccessResult("Position Deletion Successful");
+        return new SuccessResult("Position Deleted");
     }
 }
