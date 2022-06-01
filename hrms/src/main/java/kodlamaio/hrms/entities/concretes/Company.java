@@ -1,5 +1,6 @@
 package kodlamaio.hrms.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
@@ -44,6 +45,7 @@ public class Company extends User{
     @PastOrPresent
     private LocalDateTime dateVerified;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "company")
     @JsonIgnoreProperties({"company"})
     private List<JobPosting> jobPostings;

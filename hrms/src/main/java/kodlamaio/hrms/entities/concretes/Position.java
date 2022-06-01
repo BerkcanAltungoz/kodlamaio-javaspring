@@ -1,5 +1,6 @@
 package kodlamaio.hrms.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -32,6 +33,7 @@ public class Position {
     @Column(name = "title", unique = true)
     private String title;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "position")
     @JsonIgnoreProperties({"position"})
     private List<JobPosting> jobPostings;
