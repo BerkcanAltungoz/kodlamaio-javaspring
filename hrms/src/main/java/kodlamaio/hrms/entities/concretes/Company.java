@@ -46,7 +46,7 @@ public class Company extends User{
     private LocalDateTime dateVerified;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "company")
+    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
     @JsonIgnoreProperties({"company"})
     private List<JobPosting> jobPostings;
 }

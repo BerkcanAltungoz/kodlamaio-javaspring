@@ -28,19 +28,19 @@ public class JobPosting {
     private int id;
 
     @NotNull
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "company_id", referencedColumnName = "user_id")
-    @JsonIgnoreProperties({"jobPostings"})
+    @JsonIgnoreProperties({"website"})
     private Company company;
 
     @NotNull
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "city_id", referencedColumnName = "id")
     @JsonIgnoreProperties({"jobPostings"})
     private City city;
 
     @NotNull
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "position_id", referencedColumnName = "id")
     @JsonIgnoreProperties({"jobPostings"})
     private Position position;

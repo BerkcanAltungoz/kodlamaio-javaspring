@@ -34,7 +34,7 @@ public class Position {
     private String title;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "position")
+    @OneToMany(mappedBy = "position", cascade = CascadeType.ALL)
     @JsonIgnoreProperties({"position"})
     private List<JobPosting> jobPostings;
 }
