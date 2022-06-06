@@ -1,5 +1,6 @@
 package kodlamaio.hrms.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,6 +11,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Getter
 @Setter
@@ -31,4 +33,9 @@ public class SchoolDepartment {
     @Size(max = 150)
     @Column(name = "name", unique = true)
     private String name;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "schoolDepartment", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties({"schoolDepartment"})
+    private List<ResumeSchool> resumeSchools;
 }

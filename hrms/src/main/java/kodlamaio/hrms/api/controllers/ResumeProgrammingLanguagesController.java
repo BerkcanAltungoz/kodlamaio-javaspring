@@ -16,11 +16,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/resumeProgrammingLanguage")
-public class ResumeProgrammingLanguageController {
+public class ResumeProgrammingLanguagesController {
     private ResumeProgrammingLanguageService resumeProgrammingLanguageService;
 
     @Autowired
-    public ResumeProgrammingLanguageController(ResumeProgrammingLanguageService resumeProgrammingLanguageService) {
+    public ResumeProgrammingLanguagesController(ResumeProgrammingLanguageService resumeProgrammingLanguageService) {
         this.resumeProgrammingLanguageService = resumeProgrammingLanguageService;
     }
 

@@ -29,13 +29,13 @@ public class ResumeProgrammingLanguageManager implements ResumeProgrammingLangua
     @Override
     public Result add(ResumeProgrammingLanguage resumeProgrammingLanguage) {
         resumeProgrammingLanguageDao.save(resumeProgrammingLanguage);
-        return new SuccessResult("Resume Language Added");
+        return new SuccessResult("Resume Programming Language Added");
     }
 
     @Override
     public Result delete(ResumeProgrammingLanguage resumeProgrammingLanguage) {
         resumeProgrammingLanguageDao.delete(resumeProgrammingLanguage);
-        return new SuccessResult("Resume Language Deleted");
+        return new SuccessResult("Resume Programming Language Deleted");
     }
 
     @Override
