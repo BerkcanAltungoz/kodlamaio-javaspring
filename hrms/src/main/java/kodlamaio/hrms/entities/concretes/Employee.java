@@ -1,11 +1,14 @@
 package kodlamaio.hrms.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.time.LocalDate;
+import java.util.List;
 
 
 @Getter
@@ -41,4 +44,8 @@ public class Employee extends User {
     @Column(name = "dateofbirth")
     private LocalDate dateofbirth;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties({"employee"})
+    private List<Resume> resumes;
 }

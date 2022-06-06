@@ -29,19 +29,19 @@ public class JobPosting {
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "company_id", referencedColumnName = "user_id")
+    @JoinColumn(name = "company_id")
     @JsonIgnoreProperties({"jobPostings"})
     private Company company;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "city_id", referencedColumnName = "id")
+    @JoinColumn(name = "city_id")
     @JsonIgnoreProperties({"jobPostings"})
     private City city;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "position_id", referencedColumnName = "id")
+    @JoinColumn(name = "position_id")
     @JsonIgnoreProperties({"jobPostings"})
     private Position position;
 

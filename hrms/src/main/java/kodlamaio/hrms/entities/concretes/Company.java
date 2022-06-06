@@ -29,7 +29,7 @@ public class Company extends User{
     @NotNull
     @NotBlank
     @Size(max = 50)
-    @Column(name = "website")
+    @Column(name = "website", unique = true)
     private String website;
 
     @NotNull
