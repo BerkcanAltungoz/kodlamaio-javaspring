@@ -1,25 +1,25 @@
 package kodlamaio.hrms.api.controllers;
 
-import kodlamaio.hrms.business.abstracts.ProgrammingLanguageService;
+import kodlamaio.hrms.business.abstracts.SchoolService;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.Language;
-import kodlamaio.hrms.entities.concretes.ProgrammingLanguage;
+import kodlamaio.hrms.entities.concretes.School;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/programmingLanguages")
-public class ProgrammingLanguageController {
-    private final ProgrammingLanguageService programmingLanguageService;
+@RequestMapping("/api/schools")
+public class SchoolsController {
+    private final SchoolService schoolService;
 
     @Autowired
-    public ProgrammingLanguageController(ProgrammingLanguageService programmingLanguageService) {
-        this.programmingLanguageService = programmingLanguageService;
+    public SchoolsController(SchoolService schoolService) {
+        this.schoolService = schoolService;
     }
     @GetMapping("/get/all")
     public ResponseEntity<?> getAll(){
-        Result result = programmingLanguageService.getAll();
+        Result result = schoolService.getAll();
         if (result.isSuccess()){
             return ResponseEntity.ok(result);
         }
@@ -29,8 +29,8 @@ public class ProgrammingLanguageController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<?> add(@RequestParam ProgrammingLanguage programmingLanguage){
-        Result result = programmingLanguageService.add(programmingLanguage);
+    public ResponseEntity<?> add(@RequestParam School school){
+        Result result = schoolService.add(school);
         if (result.isSuccess()){
             return ResponseEntity.ok(result);
         }
@@ -40,11 +40,12 @@ public class ProgrammingLanguageController {
     }
 
     @PostMapping("/delete")
-    public ResponseEntity<?> delete(ProgrammingLanguage programmingLanguage) {
-        Result result = programmingLanguageService.delete(programmingLanguage);
-        if (result.isSuccess()) {
+    public ResponseEntity<?> delete(School school){
+        Result result = schoolService.delete(school);
+        if (result.isSuccess()){
             return ResponseEntity.ok(result);
-        } else {
+        }
+        else{
             return ResponseEntity.badRequest().body(result);
         }
     }
