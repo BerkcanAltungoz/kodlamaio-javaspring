@@ -27,18 +27,18 @@ public class ProgrammingLanguageManager implements ProgrammingLanguageService {
     @Override
     public Result add(ProgrammingLanguage programmingLanguage) {
         if(existsByName(programmingLanguage.getName()).isSuccess()){
-            return new ErrorResult("Language Already Exists");
+            return new ErrorResult("Programming Language Already Exists");
         }
         else{
             programmingLanguageDao.save(programmingLanguage);
-            return new SuccessResult("Language Added");
+            return new SuccessResult("Programming Language Added");
         }
     }
 
     @Override
     public Result delete(ProgrammingLanguage programmingLanguage) {
         programmingLanguageDao.delete(programmingLanguage);
-        return new SuccessResult("Language Deleted");
+        return new SuccessResult("Programming Language Deleted");
     }
 
     @Override

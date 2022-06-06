@@ -39,7 +39,7 @@ public class ProgrammingLanguageController {
         }
     }
 
-    @PostMapping
+    @PostMapping("/delete")
     public ResponseEntity<?> delete(ProgrammingLanguage programmingLanguage) {
         Result result = programmingLanguageService.delete(programmingLanguage);
         if (result.isSuccess()) {

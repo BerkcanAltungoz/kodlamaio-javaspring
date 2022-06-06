@@ -1,28 +1,25 @@
 package kodlamaio.hrms.api.controllers;
 
-import kodlamaio.hrms.business.abstracts.LanguageService;
-import kodlamaio.hrms.core.utilities.results.DataResult;
+import kodlamaio.hrms.business.abstracts.SchoolDepartmentService;
 import kodlamaio.hrms.core.utilities.results.Result;
-import kodlamaio.hrms.entities.concretes.Language;
+import kodlamaio.hrms.entities.concretes.SchoolDepartment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
-@RequestMapping("/api/languages")
-public class LanguagesController {
-    private final LanguageService languageService;
+@RequestMapping("/api/schoolDepartments")
+public class SchoolDepartmentsController {
+    private final SchoolDepartmentService schoolDepartmentService;
 
     @Autowired
-    public LanguagesController(LanguageService languageService) {
-        this.languageService = languageService;
+    public SchoolDepartmentsController(SchoolDepartmentService schoolDepartmentService) {
+        this.schoolDepartmentService = schoolDepartmentService;
     }
 
     @GetMapping("/get/all")
     public ResponseEntity<?> getAll(){
-        Result result = languageService.getAll();
+        Result result = schoolDepartmentService.getAll();
         if (result.isSuccess()){
             return ResponseEntity.ok(result);
         }
@@ -32,8 +29,8 @@ public class LanguagesController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<?> add(@RequestParam Language language){
-        Result result = languageService.add(language);
+    public ResponseEntity<?> add(@RequestParam SchoolDepartment schoolDepartment){
+        Result result = schoolDepartmentService.add(schoolDepartment);
         if (result.isSuccess()){
             return ResponseEntity.ok(result);
         }
@@ -43,8 +40,8 @@ public class LanguagesController {
     }
 
     @PostMapping("/delete")
-    public ResponseEntity<?> delete(Language language){
-        Result result = languageService.delete(language);
+    public ResponseEntity<?> delete(SchoolDepartment schoolDepartment){
+        Result result = schoolDepartmentService.delete(schoolDepartment);
         if (result.isSuccess()){
             return ResponseEntity.ok(result);
         }
