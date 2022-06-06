@@ -30,7 +30,7 @@ public class JobPosting {
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "company_id", referencedColumnName = "user_id")
-    @JsonIgnoreProperties({"website"})
+    @JsonIgnoreProperties({"jobPostings"})
     private Company company;
 
     @NotNull

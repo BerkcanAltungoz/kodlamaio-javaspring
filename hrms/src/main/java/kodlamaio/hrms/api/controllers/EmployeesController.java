@@ -1,18 +1,18 @@
 package kodlamaio.hrms.api.controllers;
 
 import kodlamaio.hrms.business.abstracts.EmployeeService;
-import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/employees")
 public class EmployeesController {
-    private EmployeeService employeeService;
+    private final EmployeeService employeeService;
 
     @Autowired
     public EmployeesController(EmployeeService employeeService) {
@@ -20,33 +20,69 @@ public class EmployeesController {
     }
 
     @GetMapping(value = "/get/all")
-    public DataResult<List<Employee>> getAll(){
-        return employeeService.getAll();
+    public ResponseEntity<?> getAll(){
+        Result result = employeeService.getAll();
+        if (result.isSuccess()){
+            return ResponseEntity.ok(result);
+        }
+        else{
+            return ResponseEntity.badRequest().body(result);
+        }
     }
 
     @GetMapping(value = "/get/byID")
-    public DataResult<Employee> getByID(@RequestParam int userID){
-        return employeeService.getByID(userID);
+    public ResponseEntity<?> getByID(@RequestParam int userID){
+        Result result = employeeService.getByID(userID);
+        if (result.isSuccess()){
+            return ResponseEntity.ok(result);
+        }
+        else{
+            return ResponseEntity.badRequest().body(result);
+        }
     }
 
     @GetMapping(value = "/get/byIdentityNumber")
-    public DataResult<Employee> getByIdentityNumber(@RequestParam String identityNumber){
-        return employeeService.getByIdentityNumber(identityNumber);
+    public ResponseEntity<?> getByIdentityNumber(@RequestParam String identityNumber){
+        Result result = employeeService.getByIdentityNumber(identityNumber);
+        if (result.isSuccess()){
+            return ResponseEntity.ok(result);
+        }
+        else{
+            return ResponseEntity.badRequest().body(result);
+        }
     }
 
     @GetMapping(value = "/get/byEmail")
-    public DataResult<Employee> getByEmail(@RequestParam String email){
-        return employeeService.getByEmail(email);
+    public ResponseEntity<?> getByEmail(@RequestParam String email){
+        Result result = employeeService.getByEmail(email);
+        if (result.isSuccess()){
+            return ResponseEntity.ok(result);
+        }
+        else{
+            return ResponseEntity.badRequest().body(result);
+        }
     }
 
     @PostMapping(value = "/add")
-    public Result add(@RequestBody Employee employee){
-        return employeeService.add(employee);
+    public ResponseEntity<?> add(@Valid @RequestBody Employee employee){
+        Result result = employeeService.add(employee);
+        if (result.isSuccess()){
+            return ResponseEntity.ok(result);
+        }
+        else{
+            return ResponseEntity.badRequest().body(result);
+        }
     }
 
     @PostMapping(value = "/delete")
-    public Result delete(@RequestBody Employee employee){
-        return employeeService.delete(employee);
+    public ResponseEntity<?> delete(@Valid @RequestBody Employee employee){
+        Result result = employeeService.delete(employee);
+        if (result.isSuccess()){
+            return ResponseEntity.ok(result);
+        }
+        else{
+            return ResponseEntity.badRequest().body(result);
+        }
     }
 
 }

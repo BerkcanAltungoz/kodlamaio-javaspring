@@ -1,18 +1,18 @@
 package kodlamaio.hrms.api.controllers;
 
 import kodlamaio.hrms.business.abstracts.CompanyService;
-import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.Company;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/companies")
 public class CompaniesController {
-    private CompanyService companyService;
+    private final CompanyService companyService;
 
     @Autowired
     public CompaniesController(CompanyService companyService) {
@@ -20,27 +20,57 @@ public class CompaniesController {
     }
 
     @GetMapping(value = "/get/all")
-    public DataResult<List<Company>> getAll(){
-        return companyService.getAll();
+    public ResponseEntity<?> getAll(){
+        Result result = companyService.getAll();
+        if (result.isSuccess()){
+            return ResponseEntity.ok(result);
+        }
+        else{
+            return ResponseEntity.badRequest().body(result);
+        }
     }
 
     @GetMapping(value = "/get/byID")
-    public DataResult<Company> getByID(@RequestParam int userID){
-       return companyService.getByID(userID);
+    public ResponseEntity<?> getByID(@RequestParam int userID){
+        Result result = companyService.getByID(userID);
+        if (result.isSuccess()){
+            return ResponseEntity.ok(result);
+        }
+        else{
+            return ResponseEntity.badRequest().body(result);
+        }
     }
 
     @GetMapping(value = "/get/byEmail")
-    public DataResult<Company> getByEmail(@RequestParam String email){
-        return companyService.getByEmail(email);
+    public ResponseEntity<?> getByEmail(@RequestParam String email){
+        Result result = companyService.getByEmail(email);
+        if (result.isSuccess()){
+            return ResponseEntity.ok(result);
+        }
+        else{
+            return ResponseEntity.badRequest().body(result);
+        }
     }
 
     @PostMapping(value = "/add")
-    public Result add(@RequestBody Company company){
-        return companyService.add(company);
+    public ResponseEntity<?> add(@Valid @RequestBody Company company){
+        Result result = companyService.add(company);
+        if (result.isSuccess()){
+            return ResponseEntity.ok(result);
+        }
+        else{
+            return ResponseEntity.badRequest().body(result);
+        }
     }
 
     @PostMapping(value = "/delete")
-    public Result delete(@RequestBody Company company){
-        return companyService.delete(company);
+    public ResponseEntity<?> delete(@Valid @RequestBody Company company){
+        Result result = companyService.delete(company);
+        if (result.isSuccess()){
+            return ResponseEntity.ok(result);
+        }
+        else{
+            return ResponseEntity.badRequest().body(result);
+        }
     }
 }
