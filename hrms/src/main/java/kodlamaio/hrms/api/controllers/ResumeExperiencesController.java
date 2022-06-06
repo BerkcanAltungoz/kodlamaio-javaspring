@@ -55,7 +55,7 @@ public class ResumeExperiencesController {
     }
 
     @PostMapping("/delete")
-    public ResponseEntity<?> delete(ResumeExperience resumeExperience){
+    public ResponseEntity<?> delete(@Valid @RequestBody ResumeExperience resumeExperience){
         Result result = resumeExperienceService.delete(resumeExperience);
         if (result.isSuccess()){
             return ResponseEntity.ok(result);
@@ -66,7 +66,7 @@ public class ResumeExperiencesController {
     }
 
     @GetMapping("/get/byId")
-    public ResponseEntity<?> getById(int id){
+    public ResponseEntity<?> getById(@RequestParam int id){
         Result result = resumeExperienceService.getById(id);
         if (result.isSuccess()){
             return ResponseEntity.ok(result);
@@ -77,7 +77,7 @@ public class ResumeExperiencesController {
     }
 
     @GetMapping("/get/byResumeId")
-    public ResponseEntity<?> getByResumeId(int resumeId){
+    public ResponseEntity<?> getByResumeId(@RequestParam int resumeId){
         Result result = resumeExperienceService.getByResumeId(resumeId);
         if (result.isSuccess()){
             return ResponseEntity.ok(result);

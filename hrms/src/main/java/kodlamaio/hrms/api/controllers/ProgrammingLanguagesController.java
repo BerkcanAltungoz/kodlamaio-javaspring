@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api/programmingLanguages")
 public class ProgrammingLanguagesController {
@@ -29,7 +31,7 @@ public class ProgrammingLanguagesController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<?> add(@RequestParam ProgrammingLanguage programmingLanguage){
+    public ResponseEntity<?> add(@Valid @RequestBody ProgrammingLanguage programmingLanguage){
         Result result = programmingLanguageService.add(programmingLanguage);
         if (result.isSuccess()){
             return ResponseEntity.ok(result);
@@ -40,7 +42,7 @@ public class ProgrammingLanguagesController {
     }
 
     @PostMapping("/delete")
-    public ResponseEntity<?> delete(ProgrammingLanguage programmingLanguage) {
+    public ResponseEntity<?> delete(@Valid @RequestBody ProgrammingLanguage programmingLanguage) {
         Result result = programmingLanguageService.delete(programmingLanguage);
         if (result.isSuccess()) {
             return ResponseEntity.ok(result);

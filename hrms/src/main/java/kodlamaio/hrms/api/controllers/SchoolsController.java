@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api/schools")
 public class SchoolsController {
@@ -29,7 +31,7 @@ public class SchoolsController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<?> add(@RequestParam School school){
+    public ResponseEntity<?> add(@Valid @RequestBody School school){
         Result result = schoolService.add(school);
         if (result.isSuccess()){
             return ResponseEntity.ok(result);
@@ -40,7 +42,7 @@ public class SchoolsController {
     }
 
     @PostMapping("/delete")
-    public ResponseEntity<?> delete(School school){
+    public ResponseEntity<?> delete(@Valid @RequestBody School school){
         Result result = schoolService.delete(school);
         if (result.isSuccess()){
             return ResponseEntity.ok(result);

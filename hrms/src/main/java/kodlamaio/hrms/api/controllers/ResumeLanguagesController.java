@@ -12,11 +12,11 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/resumeLanguage")
-public class ResumeLanguageController {
+public class ResumeLanguagesController {
     private final ResumeLanguageService resumeLanguageService;
 
     @Autowired
-    public ResumeLanguageController(ResumeLanguageService resumeLanguageService) {
+    public ResumeLanguagesController(ResumeLanguageService resumeLanguageService) {
         this.resumeLanguageService = resumeLanguageService;
     }
 
@@ -54,7 +54,7 @@ public class ResumeLanguageController {
     }
 
     @GetMapping("/get/byId")
-    public ResponseEntity<?> getById(int id){
+    public ResponseEntity<?> getById(@RequestParam int id){
         Result result = resumeLanguageService.getById(id);
         if (result.isSuccess()){
             return ResponseEntity.ok(result);
@@ -65,7 +65,7 @@ public class ResumeLanguageController {
     }
 
     @GetMapping("/get/byResumeId")
-    public ResponseEntity<?> getByResumeId(int resumeId){
+    public ResponseEntity<?> getByResumeId(@RequestParam int resumeId){
         Result result = resumeLanguageService.getByResumeId(resumeId);
         if (result.isSuccess()){
             return ResponseEntity.ok(result);
