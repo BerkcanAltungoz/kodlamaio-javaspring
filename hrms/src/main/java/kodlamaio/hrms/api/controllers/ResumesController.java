@@ -75,5 +75,5 @@ public class ResumesController {
             return ResponseEntity.badRequest().body(result);
         }
     }
-    
+
 }
