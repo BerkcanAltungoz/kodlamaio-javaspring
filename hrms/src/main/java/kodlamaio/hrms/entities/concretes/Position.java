@@ -37,4 +37,9 @@ public class Position {
     @OneToMany(mappedBy = "position", cascade = CascadeType.ALL)
     @JsonIgnoreProperties({"position"})
     private List<JobPosting> jobPostings;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "position", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties({"position"})
+    private List<ResumeExperience> resumeExperiences;
 }
