@@ -62,4 +62,8 @@ public class Resume {
     @JsonIgnoreProperties({"resume"})
     private List<ResumeExperience> resumeExperiences;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "resume", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties({"resume"})
+    private List<ResumeLanguage> resumeLanguages;
 }
