@@ -30,7 +30,7 @@ public class JobPostingsController {
         }
     }
     @GetMapping("/get/byID")
-    public ResponseEntity<?> getById(int id){
+    public ResponseEntity<?> getById(@RequestParam int id){
         Result result = jobPostingService.getByID(id);
         if (result.isSuccess()){
             return ResponseEntity.ok(result);
@@ -85,7 +85,7 @@ public class JobPostingsController {
     }
 
     @GetMapping("/get/allByStatusIsTrueAndCompanyId")
-    public ResponseEntity<?> getAllByStatusIsTrueAndCompanyId(int companyID){
+    public ResponseEntity<?> getAllByStatusIsTrueAndCompanyId(@RequestParam int companyID){
         Result result = jobPostingService.getAllByStatusIsTrueAndCompanyId(companyID);
         if (result.isSuccess()){
             return ResponseEntity.ok(result);
@@ -107,7 +107,7 @@ public class JobPostingsController {
     }
 
     @GetMapping("/get/byCompanyId")
-    public ResponseEntity<?> getByCompanyId(int companyID){
+    public ResponseEntity<?> getByCompanyId(@RequestParam int companyID){
         Result result = jobPostingService.getByCompanyId(companyID);
         if (result.isSuccess()){
             return ResponseEntity.ok(result);
@@ -118,7 +118,7 @@ public class JobPostingsController {
     }
 
     @GetMapping("/get/ByCompanyName")
-    public ResponseEntity<?> getByCompanyName(String companyName){
+    public ResponseEntity<?> getByCompanyName(@RequestParam String companyName){
         Result result = jobPostingService.getByCompanyName(companyName);
         if (result.isSuccess()){
             return ResponseEntity.ok(result);
