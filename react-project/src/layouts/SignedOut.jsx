@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, MenuItem } from 'semantic-ui-react'
+import {Button, MenuItem} from 'semantic-ui-react'
 
 export default function SignedOut(props) {
     return (

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {useParams} from 'react-router-dom'
-import {Button, Card, Image} from 'semantic-ui-react'
+import {Button, Card} from 'semantic-ui-react'
 import ProductService from "../services/productService";
 
 
